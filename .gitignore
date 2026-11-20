@@ -1,0 +1,5 @@
+.vevn/
+.enc
+__pycache__/
+credentials/
+data/raw/
