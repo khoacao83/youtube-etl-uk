@@ -1,5 +1,6 @@
-.vevn/
-.enc
+.venv/
+.env
 __pycache__/
 credentials/
 data/raw/
+output/

@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/youtube_etl/__init__.py
+src/youtube_etl/__main__.py
+src/youtube_etl/cli.py
+src/youtube_etl.egg-info/PKG-INFO
+src/youtube_etl.egg-info/SOURCES.txt
+src/youtube_etl.egg-info/dependency_links.txt
+src/youtube_etl.egg-info/top_level.txt
