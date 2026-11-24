@@ -1,4 +1,4 @@
-create table if not exists '${CLEAN}.artists' (
+create table if not exists `${CLEAN}.artists` (
     artist_id string not null,
     rank int64 not null,
     artist_name string not null,
@@ -13,26 +13,26 @@ create table if not exists '${CLEAN}.artists' (
 )
 cluster by artist_id;
 
-CREATE TABLE IF NOT EXISTS '${CLEAN}.artist_channels' (
+CREATE TABLE IF NOT EXISTS `${CLEAN}.artist_channels` (
     artist_id string not null,
     channel_id string not null,
     channel_title string,
-    chanle_role string,
-    status string,
+    channel_role string,
+    status string not null,
     verification_method string,
     evidence_url string,
     uploads_playlist_id string,
     video_count int64,
-    subcriber_count int64,
+    subscriber_count int64,
     verified_at timestamp,
     run_id string not null,
-    fetch_at timestamp not null,
-    load_timestamp timestamp not null
+    fetched_at timestamp not null,
+    load_timestamp timestamp not null,
     primary key(artist_id, channel_id) not enforced
 )
 cluster by artist_id, channel_id;
 
-CREATE TABLE IF NOT EXISTS '${RAW}.staging_artists' (
+CREATE TABLE IF NOT EXISTS `${RAW}.staging_artists` (
     artist_id string not null,
     rank int64 not null,
     artist_name string not null,
@@ -49,7 +49,7 @@ partition by date(load_timestamp)
 cluster by run_id
 options (partition_expiration_days = 7);
 
-create table if not exists '${RAW}.staging_artist_channels'(
+create table if not exists `${RAW}.staging_artist_channels`(
     artist_id string not null,
     channel_id string not null,
     channel_title string,
@@ -59,12 +59,13 @@ create table if not exists '${RAW}.staging_artist_channels'(
     evidence_url string,
     uploads_playlist_id string,
     video_count int64,
-    subcriber_count int64,
+    subscriber_count int64,
     verified_at timestamp,
+    batch_id string,
     run_id string not null,
     fetched_at timestamp not null,
     load_timestamp timestamp not null
 )
 partition by date(load_timestamp)
 cluster by run_id
-options (partition_exporation_days = 7 );
+options (partition_expiration_days = 7);
