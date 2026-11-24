@@ -1,0 +1,145 @@
+[1mdiff --git a/.env.example b/.env.example[m
+[1mindex 4a8d5f2..456f610 100644[m
+[1m--- a/.env.example[m
+[1m+++ b/.env.example[m
+[36m@@ -11,3 +11,10 @@[m [mSEARCH_FALLBACK_ENABLED=true[m
+ SEARCH_DAILY_UNIT_CAP=1000[m
+ SEARCH_MAX_CALLS_PER_ARTIST=2[m
+ SEARCH_COOLDOWN_DAYS=7[m
+[32m+[m
+[32m+[m[32m# Data retention settings[m
+[32m+[m[32mRETENTION_DAYS=30[m
+[32m+[m[32mSTATS_RETENTION_DAYS=365[m
+[32m+[m[32mCOMMENT_RETENTION_DAYS=30[m
+[32m+[m[32mREFRESH_RETENTION_DAYS=30[m
+[32m+[m[32mAUTHOR_HASH_SALT= your_random_secret_salt_here[m
+\ No newline at end of file[m
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 4e8cc2d..aa3cef8 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -1 +1,7 @@[m
+[31m-# Youtube ETL Top 100 UK[m
+[32m+[m[32m## Youtube ETL Top 100 UK[m
+[32m+[m
+[32m+[m
+[32m+[m[32m## Data Source[m
+[32m+[m[32m- **Week**: 2026-13-11 đến 2026-19-11[m
+[32m+[m[32m- **source_method**: manual_copy[m[41m [m
+[32m+[m[32m- **Evidence**: 'docs/evidence/chart_20262412.png'[m
+\ No newline at end of file[m
+[1mdiff --git a/data/artist_channels.csv b/data/artist_channels.csv[m
+[1mdeleted file mode 100644[m
+[1mindex 89befd3..0000000[m
+[1m--- a/data/artist_channels.csv[m
+[1m+++ /dev/null[m
+[36m@@ -1,2 +0,0 @@[m
+[31m-artist_id,handle,channel_id,uploads_playlist_id,channel_url,verified_at[m
+[31m-artists-001,@eminem,UCfM3zsQsOnfWNUppiycmBuw,UUfM3zsQsOnfWNUppiycmBuw,https://www.youtube.com/@eminem,2026-11-20T15:38:18.789312+00:00[m
+[1mdiff --git a/data/base.csv b/data/base.csv[m
+[1mdeleted file mode 100644[m
+[1mindex b583b48..0000000[m
+[1m--- a/data/base.csv[m
+[1m+++ /dev/null[m
+[36m@@ -1,101 +0,0 @@[m
+[31m-Rank,Previous Rank,Artist Name,Periods on Chart,Views,Growth[m
+[31m-1,2,Eminem,529,3603343,-0.01%[m
+[31m-2,1,Michael Jackson,529,3050669,-0.17%[m
+[31m-3,4,Rihanna,529,2873088,0.04%[m
+[31m-4,6,Drake,507,2752355,0%[m
+[31m-5,8,Taylor Swift,529,2695760,0.01%[m
+[31m-6,7,D-Block Europe,405,2619424,-0.03%[m
+[31m-7,19,Olivia Rodrigo,305,2574480,0.48%[m
+[31m-8,10,The Weeknd,527,2536299,0.06%[m
+[31m-9,11,Arijit Singh,528,2444741,0.04%[m
+[31m-10,13,Ariana Grande,529,2353293,0.09%[m
+[31m-11,12,Justin Bieber,529,2303626,0.06%[m
+[31m-12,15,Linkin Park,529,2203077,0.04%[m
+[31m-13,9,Ed Sheeran,529,2164902,-0.1%[m
+[31m-14,14,KATSEYE,80,2149174,0.01%[m
+[31m-15,16,Lady Gaga,456,2047317,0%[m
+[31m-16,20,Shreya Ghoshal,399,1916278,0.12%[m
+[31m-17,17,Shakira,483,1896658,-0.05%[m
+[31m-18,18,Bruno Mars,529,1867116,0.02%[m
+[31m-19,21,Alka Yagnik,518,1696349,0.02%[m
+[31m-20,24,Jamie Miller,7,1694760,0.1%[m
+[31m-21,64,Sam Fender,266,1662723,0.52%[m
+[31m-22,22,Chris Brown,529,1650180,0.01%[m
+[31m-23,25,Queen,529,1602903,0.04%[m
+[31m-24,36,Mariah Carey,397,1602047,0.17%[m
+[31m-25,27,Katy Perry,529,1598157,0.05%[m
+[31m-26,26,50 Cent,510,1548871,0.02%[m
+[31m-27,28,David Guetta,524,1546917,0.02%[m
+[31m-28,32,Antonio Cipriano,3,1530013,0.08%[m
+[31m-29,71,Lil Baby,420,1516679,0.46%[m
+[31m-30,38,The Beatles,409,1516182,0.12%[m
+[31m-31,23,Burna Boy,354,1502739,-0.04%[m
+[31m-32,30,Kanye West,492,1497857,0.01%[m
+[31m-33,35,Coldplay,529,1494649,0.08%[m
+[31m-34,33,Olivia Dean,69,1451036,0.03%[m
+[31m-35,29,Oasis,529,1448823,-0.03%[m
+[31m-36,n/a,Skepta,325,1427624,n/a[m
+[31m-37,40,Adele,517,1419816,0.08%[m
+[31m-38,31,Tate McRae,326,1391186,-0.03%[m
+[31m-39,37,Beyoncé,529,1376559,0.01%[m
+[31m-40,34,Calvin Harris,529,1358047,-0.02%[m
+[31m-41,41,Karan Aujla,233,1334679,0.01%[m
+[31m-42,42,Udit Narayan,482,1306597,0.02%[m
+[31m-43,43,Lil Durk,317,1291557,0.01%[m
+[31m-44,44,Lana Del Rey,335,1272308,0%[m
+[31m-45,45,2Pac,474,1257779,0%[m
+[31m-46,58,P!NK,529,1251462,0.09%[m
+[31m-47,49,Pritam,187,1248547,0.02%[m
+[31m-48,46,Alex Warren,115,1245453,0.01%[m
+[31m-49,47,Elvis Presley,519,1243927,0.01%[m
+[31m-50,59,Akon,385,1236835,0.09%[m
+[31m-51,48,Santan Dave,430,1229799,0.01%[m
+[31m-52,3,Diljit Dosanjh,307,1227837,-0.64%[m
+[31m-53,57,Arctic Monkeys,519,1216771,0.06%[m
+[31m-54,50,ABBA,341,1211619,0%[m
+[31m-55,68,Elton John,395,1189828,0.13%[m
+[31m-56,54,Teddy Swims,158,1183794,0.02%[m
+[31m-57,53,Dua Lipa,503,1175779,0.02%[m
+[31m-58,52,Central cee,316,1166471,0%[m
+[31m-59,61,Billie Eilish,434,1164472,0.03%[m
+[31m-60,63,Fleetwood Mac,329,1149087,0.03%[m
+[31m-61,77,Sia,526,1144827,0.15%[m
+[31m-62,69,Maroon 5,526,1143557,0.09%[m
+[31m-63,56,KPop Demon Hunters Cast,73,1128052,-0.02%[m
+[31m-64,62,Noah Kahan,160,1102330,-0.01%[m
+[31m-65,39,nine,325,1092254,-0.19%[m
+[31m-66,72,Disney,161,1091747,0.05%[m
+[31m-67,73,Imagine Dragons,529,1076600,0.04%[m
+[31m-68,67,Post Malone,498,1071780,0.02%[m
+[31m-69,65,Jason Derulo,509,1067720,-0.03%[m
+[31m-70,88,SIENNA SPIRO,53,1052948,0.15%[m
+[31m-71,76,Céline Dion,465,1050293,0.05%[m
+[31m-72,55,Anirudh Ravichander,275,1048117,-0.09%[m
+[31m-73,66,Zara Larsson,246,1036299,-0.02%[m
+[31m-74,99,Future,420,1033863,0.2%[m
+[31m-75,51,Bugzy Malone,416,1013374,-0.15%[m
+[31m-76,91,Gur Sidhu,101,1005705,0.11%[m
+[31m-77,80,Britney Spears,387,997979,0.04%[m
+[31m-78,84,Tzanca Uraganu,314,991854,0.06%[m
+[31m-79,n/a,Kings Of Leon,301,988397,n/a[m
+[31m-80,81,Madonna,325,984890,0.03%[m
+[31m-81,78,EJAE,73,980536,-0.01%[m
+[31m-82,74,ILLIT,31,977893,-0.03%[m
+[31m-83,87,Radiohead,301,975297,0.06%[m
+[31m-84,82,Sabrina Carpenter,157,965681,0.01%[m
+[31m-85,79,Pitbull,461,963053,0%[m
+[31m-86,70,Harry Styles,374,959245,-0.09%[m
+[31m-87,94,Juice WRLD,441,956912,0.06%[m
+[31m-88,85,Metallica,376,952086,0.02%[m
+[31m-89,93,Lewis Capaldi,406,950873,0.06%[m
+[31m-90,83,Sean Paul,463,943258,-0.01%[m
+[31m-91,n/a,Stray Kids,279,934231,n/a[m
+[31m-92,86,HUNTR/X,72,920532,-0.01%[m
+[31m-93,n/a,George Michael,322,917746,n/a[m
+[31m-94,n/a,A. R. Rahman,258,917301,n/a[m
+[31m-95,n/a,James Blunt,158,899949,n/a[m
+[31m-96,60,Tame Impala,59,899615,-0.2%[m
+[31m-97,96,BTS,526,896471,0.02%[m
+[31m-98,90,REI AMI,71,893986,-0.01%[m
+[31m-99,92,AUDREY NUNA,71,892843,-0.01%[m
+[31m-100,97,Florin Salam,304,887983,0.02%[m
